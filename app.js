@@ -21,13 +21,15 @@ const Header = () => {
     )
 }
 
-const RestaurantCard = () => {
+const RestaurantCard = (props) => {
+    const {resName, foodName, starRate, foodIMG} = props
+    
     return (
         <div className="card">
-        <img className="resto-img" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2024/7/18/2fddbc8f-05a1-4b26-a6d5-99e56f4248a5_677777.jpg"/>
-        <h3>Restaurant Name</h3>
-        <h4>Pizza Hut</h4>
-        <h6>⭐4.5</h6>
+        <img className="resto-img" src={foodIMG}/>
+        <h3>{resName}</h3>
+        <h4>{foodName}</h4>
+        <h6>{starRate}</h6>
         <h6>Beverages, Fast Food
         Munduparamba</h6>
         </div>
@@ -44,14 +46,14 @@ const Body = () => {
 
             </div>
             <div className="card-container" >
-            <RestaurantCard/>
-            <RestaurantCard/>
-            <RestaurantCard/>
-            <RestaurantCard/>
-            <RestaurantCard/>
-            <RestaurantCard/>
-            <RestaurantCard/>
-            <RestaurantCard/>
+            <RestaurantCard resName="Pizza Hut" foodName="pizza" starRate="⭐4.9" foodIMG="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2024/7/18/2fddbc8f-05a1-4b26-a6d5-99e56f4248a5_677777.jpg"/>
+            <RestaurantCard resName="Nahdhi Mandhi" foodName="Alpham" starRate="⭐5.1" foodIMG="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/b5303a94c367062c158ce278bf6307a3"/>
+            <RestaurantCard resName="Albake" foodName="Gazania Mezban" starRate="⭐4.9" foodIMG="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2024/12/5/87523b3c-cd5c-459b-9ed1-51a1e03c5832_289068%20(1).jpg"/>
+            <RestaurantCard resName="KFC" foodName="pizza" starRate="⭐3.3" foodIMG="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/7f4f2dc5c2bf4771245f94de4400aa8c"/>
+            <RestaurantCard resName="KFC" foodName="pizza" starRate="⭐3.1" foodIMG="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/bf3c2df75f63505407635e32df6a7e3a"/>
+            <RestaurantCard resName="KFC" foodName="pizza" starRate="⭐2.5" foodIMG=""/>
+            <RestaurantCard resName="KFC" foodName="pizza" starRate="⭐5.2" foodIMG=""/>
+            <RestaurantCard resName="KFC" foodName="pizza" starRate="⭐3.1" foodIMG=""/>
             </div>
         </div>
     )
