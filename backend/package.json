@@ -1,19 +1,20 @@
 {
-  "name": "food-order-app",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "food ordering app build in React",
-  "main": "index.js",
+  "description": "api calling server",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html",
-    "test": "jest"
+    "test": "jest",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Abhinand-SD/Food-order-app-react.git"
   },
   "keywords": [
-    "react-app"
+    "api",
+    "calling"
   ],
   "author": "Abhinand sd",
   "license": "ISC",
@@ -21,15 +22,9 @@
     "url": "https://github.com/Abhinand-SD/Food-order-app-react/issues"
   },
   "homepage": "https://github.com/Abhinand-SD/Food-order-app-react#readme",
-  "devDependencies": {
-    "parcel": "^2.13.3",
-    "process": "^0.11.10"
-  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",
-    "node-fetch": "^3.3.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "node-fetch": "^3.3.2"
   }
 }

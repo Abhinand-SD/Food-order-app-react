@@ -1,0 +1,55 @@
+.card-container{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;  /* Distribute evenly */
+    width: 100%; /* Ensure full width */
+    padding: 0 20px; /* Add some padding */
+    box-sizing: border-box; /* Prevents overflow issues */
+}
+
+.card{
+    padding: 20px;
+    margin: 20px;
+    width: 200px;
+    height: auto;
+    border-radius: 2px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 2px 7px 1px rgba(0, 0, 0, 0.184);
+}
+
+.card h4{
+    padding: 15px 0px 5px 0px;
+    color: #171b1f;
+}
+
+.card h5{
+    padding-bottom: 3px;
+    color: #676a73;
+    font-size:small;
+    font-weight: 500;
+}
+
+.card span {
+    display: flex;
+    font-size: 14px;
+    align-items: center;  /* Centers vertically */
+    gap: 5px; /* Adds space between the SVG and text */
+  }
+
+.card:hover{
+    transform: scale(1.05);  /* Increases size by 5% */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+}
+
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    padding: 38px;
+    justify-content: space-between;
+}
+
+.resto-img{
+    width: 100%;
+}

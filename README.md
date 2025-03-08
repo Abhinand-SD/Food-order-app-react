@@ -22,4 +22,9 @@ Mock API / Backend – To simulate real-world food ordering.
 
 More
 
-React Hook
+# React Hooks
+ (Normal JS utility functions)
+
+  -use State()
+  -useEffect()
+
