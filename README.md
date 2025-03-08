@@ -19,7 +19,15 @@ CSS/Flexbox/Grid – For styling and layout.
 JavaScript (ES6+) – Core logic and functionality.
 Mock API / Backend – To simulate real-world food ordering.
 
-
 More
 
 React Hook
+  -useState
+  -useEffect
+
+
+✨ Features of the Shimmer Effect
+Skeleton loader before actual data appears
+Smooth animation to simulate loading
+Same structure as the actual cards to avoid layout shifts
+Flexible & Responsive
