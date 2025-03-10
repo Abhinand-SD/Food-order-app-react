@@ -1,53 +1,58 @@
 import RestaurantCard from "./RestaurantCard"
 import { useState, useEffect } from "react"
-import { resList } from "../utils/mockData"
 import Shimmer from "./shimmer"
 
 const Body = () => {
 
-    const [listOfRestaurants, setList] = useState(resList)
+    const [listOfRestaurants, setList] = useState([])
+    const [filteredRest, setFilterdRest] = useState([])
+
+    const [searchText, setSearchText] = useState("")
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/restaurants")
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log("✅ Fetched Data:", data);
-                setRestaurants(data);
-            })
-            .catch((error) => {
-                console.error("❌ Error fetching data:", error);
-            });
+        fetchData();
+        
     }, []);
 
+    const fetchData = async () => {
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+        
+    const json = await data.json()
+
+    setList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setFilterdRest(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+
+    }
 
     return (
         <div className="body">
 
             <div className="search-container">
 
-                <input className="search-item" type="text" placeholder="Search restorent and food"></input>
-                <button className="search-btn"><span className="material-symbols-outlined">
-                    search
-                </span></button>
-
+                <input className="search-item" type="text" placeholder="Search restorent and food" value={searchText} onChange={(event) => {
+                    setSearchText(event.target.value)
+                }}></input>
+                
+                <button className="search-btn" onClick={() => {
+                    const res = listOfRestaurants.filter(item => item.info.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()))
+        
+                    setFilterdRest(res)
+                }} ><span className="material-symbols-outlined">   
+                        search
+                    </span></button>
             </div>
 
             <div className="filter-container">
 
                 <button className="filter-btn" onClick={() => {
-                    console.log("jfsdj")
-                    setList(resList)
+                    
+                    setFilterdRest(listOfRestaurants)
 
                 }} >All</button>
 
                 <button className="filter-btn" onClick={() => {
                     const filterRateingList = listOfRestaurants.filter(item => item.info.avgRating > 4.5)
-                    setList(filterRateingList)
+                    setFilterdRest(filterRateingList)
                 }} >Top Restaurants</button>
 
                 <button className="filter-btn" onClick={() => {
@@ -58,11 +63,11 @@ const Body = () => {
                         return cost < 201;
 
                     })
-                    setList(filterPrizeList)
+                    setFilterdRest(filterPrizeList)
 
                 }}
                 >Low Prize</button>
-                
+
                 <button className="filter-btn" onClick={() => {
 
                     const filterPrizeList = listOfRestaurants.filter(item => {
@@ -71,7 +76,7 @@ const Body = () => {
                         return cost >= 400;
 
                     })
-                    setList(filterPrizeList)
+                    setFilterdRest(filterPrizeList)
 
                 }}
                 >Premium</button>
@@ -79,23 +84,22 @@ const Body = () => {
                 <button className="filter-btn" onClick={() => {
                     const filterTime = listOfRestaurants.filter(item => item.info.sla.deliveryTime < 21)
 
-                    setList(filterTime)
+                    setFilterdRest(filterTime)
                 }}>Fast Delivery</button>
 
+
                 <button className="filter-btn" onClick={() => {
+                    setFilterdRest()
 
-                }}>Offers</button>
-
-<button className="filter-btn" onClick={() => {
-
-}}>Pure Veg</button>
+                }}>Pure Veg</button>
 
             </div>
+          
 
             {listOfRestaurants.length === 0 ? <Shimmer /> : (
                 <div className="card-container">
-                    {listOfRestaurants.map((item) => (
-                        <RestaurantCard key={item.id} resData={item} />
+                    {filteredRest.map((item) => (
+                        <RestaurantCard key={item.info.id} resData={item} />
                     ))}
                 </div>
             )}

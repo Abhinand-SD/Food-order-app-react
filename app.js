@@ -13,6 +13,8 @@ const AppLayout = () => {
         </div>
     )
 }
+
+
 root = ReactDOM.createRoot(document.getElementById("root"))
 
 root.render(<AppLayout />)
