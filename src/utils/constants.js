@@ -1,3 +1,4 @@
 export const CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
 export const LOGO_URL = "https://media.gettyimages.com/id/1132514938/vector/vegan-logo-raw-healthy-food-badge-tag-for-cafe-restaurants-and-packaging.jpg?s=612x612&w=0&k=20&c=Own6gmoalDSC8bcRZRIHHz-PtcKB7WCJtaFGpA3LKIc=" 
-
+export const RESTA_INFO = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&collection=80435&tags=layout_CCS_PureVeg&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
+export const RESTA_MENU = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId="

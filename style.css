@@ -19,8 +19,8 @@ body{
 }
 
 .logo-img{
-    width: 100px;
-    margin-left: 25px;
+    width: 70px;
+    margin-left:25px;
     cursor: pointer;
 }
 
@@ -31,18 +31,26 @@ body{
 }
 
 .nav-item ul li{
-    margin: 10px;
+    display: flex;
+    margin: 8px;
     padding: 10px;
+    align-items: center;
+}
+
+/* link */
+.nav-link{
+    text-decoration: none;
+    color: #030303;
+    font-weight: normal;
     font-size: 1rem;
-    font-weight:400;
     cursor: pointer;
 }
 
-.green-btn {
-    background-color: green;
+.black-btn {
+    background-color: rgb(0, 0, 0);
     color: #FFFDFA;
     border: none;
-    padding: 5px 14px;
+    padding: 8px 16px;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -51,7 +59,7 @@ body{
     background-color: red;
     color: #FFFDFA;
     border: none;
-    padding: 5px 14px;
+    padding: 8px 16px;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -138,8 +146,8 @@ body{
 }
 
 .card {
-    width: 220px; /* Set consistent width */
-    height: auto;
+    width: 220px;
+    height: 266px;
     padding: 20px;
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -148,11 +156,21 @@ body{
     cursor: pointer;
 }
 
+.card-title {
+    display: block;
+    text-decoration: none; 
+  }
+  
+
 .card h4 {
-    padding: 15px 0px 5px 0px;
+    padding: 7px 0px 5px 0px;
     color: #171b1f;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
+}
+
+.card span{
+    color: #171b1f;
 }
 
 .card h5 {
@@ -180,28 +198,6 @@ body{
     object-fit: cover; /* Prevents image distortion */
     border-radius: 5px;
 }
-
-
-/* .shimmer-container{
-    position: relative;
-    top: 110px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-grow: 1;
-    padding: 38px;
-    justify-content: space-between;
-
-}
-
-.shimmer-card{
-    padding: 20px;
-    margin: 20px;
-    flex-grow: 1;
-    width: 200px;
-    height: 300px;
-    border-radius: 2px;
-    background: #898585;
-} */
 
 /* Shimmer Container */
 .shimmer-container {
@@ -268,4 +264,80 @@ body{
     margin: 5px 0;
     border-radius: 4px;
     width: 90%;
+}
+
+/* error page  */
+.error-page-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #030303;
+    background: #F5F5F5;
+}
+
+.error-page-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.error-page-box .home-btn{
+    background-color: #b609e6;
+    color:#F5F5F5;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    
+}
+
+.restaurant_menu_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+
+.menu_container{
+    width: 800px;
+    height: auto;
+}
+
+.menu_item{
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    height: autoFcF;
+    margin: 50px;
+    padding: 50px;
+    border-radius: 20px;
+    background-color: #dbd8d8;
+}
+
+.menu_text_conainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+.menu_img_conainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.menu_item li{
+    list-style: none;
+}
+
+.menu_item .menu_img{
+     width: 100px;
+     height: 100px;
+     border-radius: 20px;
 }
