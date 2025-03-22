@@ -8,18 +8,17 @@ const RestaurantMenuCard = (props) => {
     const { name, defaultPrice, price, description, imageId, offerTags, ratings } = resData.card.info;
 
     return (
-        <ul className="menu_item">
+        <div className="menu_item">
             <div className="menu_text_conainer" >
-                <li>{name}</li>
-                <li>{defaultPrice / 100 ?? price / 100} {offerTags[0]?.title}</li>
-                <li>{ratings?.aggregatedRating?.rating} ({Number(ratings?.aggregatedRating?.ratingCount?.match(/\d+/)?.[0] || 0)})</li>
-                <li> {description}</li>
+                <h3>{name}</h3>
+                <p>&#8377;{(defaultPrice ?? price)/100} {offerTags?.title}</p>
+                <p>{ratings?.aggregatedRating?.rating || 0} ({Number(ratings?.aggregatedRating?.ratingCount?.match(/\d+/)?.[0] || 0)})</p>
+                <p> {description}</p>
             </div>
             <div className="menu_img_conainer">
-                <img src={CDN_URL + imageId} className="menu_img" ></img>
+                <img alt="no image" src={CDN_URL + imageId} className="menu_img" ></img>
             </div>
-
-        </ul>
+        </div>
 
     )
 }
