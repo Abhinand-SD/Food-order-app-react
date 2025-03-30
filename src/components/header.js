@@ -1,10 +1,10 @@
-import { LOGO_URL } from "../utils/constants"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import favicon from "../../public/image/logo.svg"
 
-const Header = () => {
 
+const Header = () => {
+    
     const [btnName, setBtnName] = useState("Login")
     return (
         <div className="header-container" >
@@ -17,6 +17,7 @@ const Header = () => {
                     <li><Link to="/about" className="nav-link">About</Link></li>
                     <li><Link to="/contact" className="nav-link">Contact Us</Link></li>
                     <li><Link to="/cart" className="nav-link">Cart</Link></li>
+                    <li><Link to="/stay" className="nav-link">Stay</Link></li>
 
                     <li><button className={`${btnName === "Login" ? "black-btn" : "red-btn"}`} onClick={() => {
                         btnName === "Login"

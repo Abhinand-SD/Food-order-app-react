@@ -1,10 +1,12 @@
-const Contact = () =>{
+const Contact = () => {
     return (
         <div>
-            <div>
-                <h1>IM Contact</h1>
+            <div className="flex justify-center">
+            <h1 className="text-3xl font-bold mt-12">Contact</h1>
+
             </div>
         </div>
+
     )
 }
 

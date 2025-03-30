@@ -1,54 +1,53 @@
-import RestaurantCard from "./restaurantCard"
-import { useState, useEffect } from "react"
-import { RESTA_INFO } from "../utils/constants"
+import RestaurantCard, { offerCards } from "./RestaurantCard"
+import { useRestaurantInfo } from "../utils/useRestaurantApi"
+import { useState} from "react"
+// import { RESTA_INFO } from "../utils/constants"
 import Shimmer from "./shimmer"
 import { Link } from "react-router-dom"
+import useOnlineStatus from "../utils/useOnlineStatus"
 
 const Body = () => {
 
-    const [listOfRestaurants, setList] = useState([])
-    const [filteredRest, setFilterdRest] = useState([])
-
     const [searchText, setSearchText] = useState("")
 
-    useEffect(() => {
-        fetchData();
-        
-    }, []);
+    const onlineStatus = useOnlineStatus();
 
-    const fetchData = async () => {
-        const data = await fetch(RESTA_INFO)
-        
-    const json = await data.json()
+    const Offers = offerCards(RestaurantCard)
 
-    setList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-    setFilterdRest(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+
+    const {listOfRestaurants, filteredRest, setFilterdRest} = useRestaurantInfo()
+
+
+    // if user is offline send a message
+    if (onlineStatus === false) {
+        return (
+            <div className="online_status_container">
+                <h1>Your are offline plese check your internet connnection</h1>
+            </div>)
 
     }
-
-
     return (
         <div className="body">
-
+            {/* Search box container*/}
             <div className="search-container">
 
                 <input className="search-item" type="text" placeholder="Search restorent and food" value={searchText} onChange={(event) => {
                     setSearchText(event.target.value)
                 }}></input>
-                
+
                 <button className="search-btn" onClick={() => {
                     const res = listOfRestaurants.filter(item => item.info.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()))
-        
+
                     setFilterdRest(res)
-                }} ><span className="material-symbols-outlined">   
+                }} ><span className="material-symbols-outlined">
                         search
                     </span></button>
             </div>
-
+            {/* Filter container */}
             <div className="filter-container">
 
                 <button className="filter-btn" onClick={() => {
-                    
+
                     setFilterdRest(listOfRestaurants)
 
                 }} >All</button>
@@ -98,10 +97,15 @@ const Body = () => {
 
             </div>
 
+            {/* Restaurant cards */}
             {listOfRestaurants.length === 0 ? <Shimmer /> : (
                 <div className="card-container">
                     {filteredRest.map((item) => (
-                        <Link to={/restaurant/+ item.info.id} className="card-title"> <RestaurantCard key={item.info.id} resData={item} /></Link>
+                        <Link to={/restaurant/ + item.info.id} className="card-title" key={item.info.id}>
+
+                            <RestaurantCard resData={item} />
+
+                        </Link>
                     ))}
                 </div>
             )}
