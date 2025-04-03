@@ -2,32 +2,24 @@ import { useState } from "react";
 import { CDN_URL } from "../utils/constants";
 import RestaurantMenuList from "./restaurantMenuList";
 
-const RestaurantMenuCategory = (props) => {
-    const { resData, showItem, setShowIndex} = props
-
-    const handles = ()=>{
-        setShowIndex()
-    } 
-
-
+const RestaurantMenuCategory = ({ resData, showItem, setShowIndex }) => {
     return (
-
-        <div onClick={handles} className="category_container">
-            <div className="category_header">
+        <div className="category_container">
+            <div onClick={setShowIndex} className="category_header">
                 <p>{resData?.title} ({resData.itemCards.length})</p>
-                <span>🔽</span>
+                <span>{showItem ? "🔼" : "🔽"}</span>
             </div>
 
-            <div>
-                {showItem &&
-                    resData?.itemCards?.map(item => (
+            {showItem && (
+                <div className="category_items">
+                    {resData?.itemCards?.map(item => (
                         <RestaurantMenuList key={item.card.info.id} resData={item.card} />
                     ))}
-            </div>
-
+                </div>
+            )}
         </div>
+    );
+};
 
-    )
-}
 
 export default RestaurantMenuCategory;

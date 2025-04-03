@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -9,19 +9,38 @@ import Contact from "./src/components/contact";
 import RestaurantMenu from "./src/components/restaurantMenu";
 import Error from "./src/components/errorPage";
 import Shimmer from "./src/components/shimmer";
+import UserContext from "./src/utils/userContext";
+import { Provider } from "react-redux";
+import appStore from "./src/utils/appStore";
+import Cart from "./src/components/cart";
 
-
-import Stay from "./src/components/stay";
-
-
+//Lazy loading components
 const Stay = lazy(() => import("./src/components/stay"))
+const About = lazy(() => import("./src/components/about"))
 
 const AppLayout = () => {
+
+    const [userLog, setUserLog] = useState("")
+
+    useEffect(() => {
+        const data = {
+            name: "Abhi"
+        }
+
+        setUserLog(data.name)
+    }, [])
+
+
     return (
-        <div>
-            <Header />
-            <Outlet />
-        </div>
+
+        <Provider store={appStore}>
+        <UserContext.Provider value={{ login: userLog, setUserLog }}>
+            <div>
+                <Header />
+                <Outlet />
+            </div>
+        </UserContext.Provider>
+        </Provider>
     )
 }
 
@@ -34,36 +53,36 @@ const appRouter = createBrowserRouter([
                 path: "/",
                 element: <Body />
             },
+            //  lazy load
             {
                 path: "/about",
-                element: <About />
+                element: <Suspense fallback=<Shimmer /> ><About /></Suspense>
 
             },
             {
                 path: "/contact",
                 element: <Contact />
             },
-            //  lazy load
             {
-                path:"/stay",
-                element: <Suspense fallback=<Shimmer /> ><Stay /></Suspense>
+                path: "/cart",
+                element: <Cart />
+
             },
             {
-                path:"/restaurant/:resId",
-                element:<RestaurantMenu />
-
+                path: "/restaurant/:resId",
+                element: <RestaurantMenu />
             }
 
         ],
         errorElement: <Error />
     }
 
-],{
+], {
     future: {
-      v7_startTransition: true, // Opt into v7 behavior
-      v7_relativeSplatPath: true, // Opt into v7 behavior
+        v7_startTransition: true, // Opt into v7 behavior
+        v7_relativeSplatPath: true, // Opt into v7 behavior
     },
-  });
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 

@@ -98,9 +98,9 @@ const Body = () => {
             </div>
 
             {/* Restaurant cards */}
-            {listOfRestaurants.length === 0 ? <Shimmer /> : (
+            {listOfRestaurants?.length === 0 ? <Shimmer /> : (
                 <div className="card-container">
-                    {filteredRest.map((item) => (
+                    {filteredRest?.map((item) => (
                         <Link to={/restaurant/ + item.info.id} className="card-title" key={item.info.id}>
 
                             <RestaurantCard resData={item} />

@@ -12,7 +12,11 @@ const RestaurantMenu = () => {
     // Restaurant menu data comming from hooks
     const resInfo = useRestaurantMenu(resId)
 
+    //menu category indexing
     const [showIndex, setShowIndex] = useState(null)
+
+
+    
 
     // Without data showing shimmer
     if (resInfo === null) return <Shimmer />
@@ -21,7 +25,7 @@ const RestaurantMenu = () => {
 
     const { descriptionList } = resInfo?.data?.cards[2]?.card?.card?.info?.aggregatedDiscountInfo;
 
-    const itemCards = resInfo?.data?.cards[4]?.groupedCard.cardGroupMap?.REGULAR?.cards.filter(item => item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+    const itemCards = resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item => item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
 
 
     // resInfo?.data?.cards[4]?.groupedCard.cardGroupMap?.REGULAR?.cards[1].card.card;
@@ -52,10 +56,10 @@ const RestaurantMenu = () => {
                 <div className="offer_box_container">
 
                     <ul className="offer_box">
-                        <li>{descriptionList[0].meta}</li>
+                        <li>{descriptionList[0]?.meta}</li>
                     </ul>
                     <ul className="offer_box">
-                        <li>{descriptionList[1].meta}</li>
+                        <li>{descriptionList[1]?.meta}</li>
 
                     </ul>
 
@@ -65,13 +69,16 @@ const RestaurantMenu = () => {
 
             {/* Restaurant category item*/}
             <div className="menu_container">
-
-                {itemCards?.map((item, index) => (<RestaurantMenuCategory key={item.card.card.categoryId}
-                    resData={item.card.card} showItem={index === showIndex && true }
-                    setShowIndex={() => setShowIndex( index)}
-                />))}
-
+                {itemCards?.map((item, index) => (
+                    <RestaurantMenuCategory
+                        key={item.card.card.categoryId}
+                        resData={item.card.card}
+                        showItem={index === showIndex}
+                        setShowIndex={() => setShowIndex(prevIndex => prevIndex === index ? null : index)} // Toggle logic
+                    />
+                ))}
             </div>
+
 
         </div>
     )

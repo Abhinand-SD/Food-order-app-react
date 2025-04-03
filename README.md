@@ -29,3 +29,12 @@ A modern food ordering web application built using React and Parcel. This app pr
 
 ## About
 This app fetches user data from GitHub API.
+
+
+## Redux Toolkit
+
+ - Install @reduxjs/toolkit and react-redux
+ - Build our store
+ - Connect our Store to our app
+ - Dispatch(action)
+ - Selector
